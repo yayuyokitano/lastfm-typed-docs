@@ -1,0 +1,94 @@
+{
+	"artist": {
+		"addtags": {
+			"endpointName": "artist.addTags",
+			"description": "Add tags to an artist",
+			"parameters": {
+				"required": ["artist", "tags", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"getcorrection": {
+			"endpointName": "artist.getCorrection",
+			"description": "Check if an artist has a last.fm autocorrect, and get the corrected name if so.",
+			"parameters": {
+				"required": ["artist"],
+				"optional": []
+			},
+			"isPostOnly": false
+		},
+		"getinfo": {
+			"endpointName": "artist.getInfo",
+			"description": "Gets metadata for an artist, also fetches bio if exists",
+			"parameters": {
+				"required": ["artistinput"],
+				"optional": ["autocorrect", "username", "sk", "lang"]
+			},
+			"isPostOnly": false
+		},
+		"getsimilar": {
+			"endpointName": "artist.getSimilar",
+			"description": "Gets similar artists to the specified artist",
+			"parameters": {
+				"required": ["artistinput"],
+				"optional": ["autocorrect", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettags": {
+			"endpointName": "artist.getTags",
+			"description": "Gets the tags a specific user has submitted for an artist",
+			"parameters": {
+				"required": ["artistinput", "userinput"],
+				"optional": ["autocorrect", "username", "sk"]
+			},
+			"isPostOnly": false
+		},
+		"gettopalbums": {
+			"endpointName": "artist.getTopAlbums",
+			"description": "Gets the most popular albums of an artist",
+			"parameters": {
+				"required": ["artistinput"],
+				"optional": ["autocorrect", "page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "artist.getTopTags",
+			"description": "Gets the most applied tags on an artist.",
+			"parameters": {
+				"required": ["artistinput"],
+				"optional": ["autocorrect"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptracks": {
+			"endpointName": "artist.getTopTracks",
+			"description": "Gets the most popular tracks of an artist",
+			"parameters": {
+				"required": ["artistinput"],
+				"optional": ["autocorrect", "page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"removetag": {
+			"endpointName": "artist.removeTag",
+			"description": "Remove a user's application of a tag from an artist",
+			"parameters": {
+				"required": ["artist", "tag", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"search": {
+			"endpointName": "artist.search",
+			"description": "Search last.fm for artists matching a query",
+			"parameters": {
+				"required": ["artist"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		}
+	}
+}

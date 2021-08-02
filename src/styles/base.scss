@@ -1,0 +1,29 @@
+@import "./palette";
+
+html {
+
+	font-size: 18px;
+	font-weight: lighter;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	
+}
+
+button {
+
+	background-color: $red;
+	font-size: 1.2rem;
+	cursor: pointer;
+	border: none;
+	color: #FFF;
+	padding: 0.5rem 1rem;
+	transition: background-color 200ms, color 200ms;
+
+}
+
+button:hover {
+
+	background-color: $reddark;
+
+}

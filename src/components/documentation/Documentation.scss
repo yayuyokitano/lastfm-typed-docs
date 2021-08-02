@@ -1,0 +1,152 @@
+@import "../../styles/base.scss";
+@import "../../styles/palette";
+
+table {
+
+	%cell {
+
+		padding: 0.25em 0.5em;
+
+	}
+
+	th {
+
+		@extend %cell;
+		background-color: $red;
+		color: #FFF;
+
+	}
+
+	td {
+
+		@extend %cell;
+		background-color: $bluebg;
+
+	}
+
+	td:nth-child(3) {
+
+		text-align: center;
+
+	}
+	
+
+}
+
+@mixin codeField {
+
+	padding: 0.5em 1em;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: bold;
+	font-size: 0.9rem;
+
+}
+
+#usage {
+
+	@include codeField;
+	background-color: $red;
+	display: inline-block;
+	color: #FFF;
+	line-height: 2em;
+
+}
+
+h3, h2 {
+
+	font-weight: lighter;
+
+}
+
+h1 {
+	
+	font-weight: normal;
+
+}
+
+h4 {
+
+	font-style: italic;
+	font-weight: lighter;
+
+}
+
+#required-parameters,
+#optional-parameters,
+#interactive-parameters {
+
+	display: flex-inline;
+	flex-flow: column;
+
+}
+
+#interactive-parameters label {
+
+	white-space: nowrap;
+
+}
+
+input {
+
+	font-size: 0.9rem;
+	padding: 0.2rem 0.4rem;
+	margin: 1rem 1rem 1rem 0;
+
+}
+
+input[type=checkbox] {
+	transform: scale(1.3);
+}
+
+label {
+
+	margin-left: 1rem;
+
+}
+
+.exclusive-parameters {
+
+	background-color: $redbg;
+	display: inline-flex;
+	flex-flow: column nowrap;
+
+	:first-child {
+
+		backdrop-filter: brightness(1.03);
+
+	}
+
+}
+
+#result {
+
+	@include codeField;
+	display: flex;
+	margin-top: 1rem;
+	background-color: $redbg;
+	overflow-x: scroll;
+	box-sizing: border-box;
+}
+
+#documentation-page {
+	display:flex;
+	max-width: 100%;
+}
+
+main {
+	margin: 1rem;
+	overflow-x: hidden;
+}
+
+body {
+	width: 100%;
+}
+
+details[open] summary ~ * {
+  animation: sweep 200ms ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; transform: translateY(-10%)}
+  100%  {opacity: 1; transform: translateY(0)}
+}

@@ -1,0 +1,26 @@
+@import "../../styles/base.scss";
+@import "../../styles/palette";
+
+.sidebar-header{
+	font-size: 1.2rem;
+}
+
+summary {
+	cursor: pointer;
+}
+
+nav {
+	padding: 1rem;
+	background-color: $bluebg;
+	height: 100vh;
+	position: sticky;
+	top: 0;
+}
+
+hr {
+	width: calc(100% + 2rem);
+	margin-left: -1rem;
+	height: 1px;
+	border: none;
+	background: linear-gradient(to right, $bluebg, $red, $bluebg);
+}
