@@ -25,6 +25,10 @@ hr {
 	background: linear-gradient(to right, $bluebg, $redbg, $redbg);
 }
 
+ul {
+	list-style-type: none;
+}
+
 li:hover {
 	background-color: $redbg;
 }
