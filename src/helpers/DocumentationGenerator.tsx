@@ -110,6 +110,15 @@ function ParameterTable(props:UsageProps) {
 
 	const {endpointName, parameters} = props;
 
+	if (parameters.required.length === 0 && parameters.optional.length === 0) {
+		return (
+			<div id="parameter-container">
+				<h2>Parameters:</h2>
+				<p>This method has no parameters.</p>
+			</div>
+		);
+	}
+
 	return (
 		<div id="parameter-container">
 			<h2>Parameters:</h2>
@@ -139,6 +148,10 @@ interface InteractiveParameterFieldsProps {
 
 function InteractiveParameterFields(props:InteractiveParameterFieldsProps) {
 	const {parameters, label, divId} = props;
+
+	if (parameters.length == 0) {
+		return null;
+	}
 
 	return (
 		<div id={divId}>
