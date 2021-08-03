@@ -106,7 +106,7 @@ label {
 
 .exclusive-parameters {
 
-	background-color: $redbg;
+	background-color: $bluebg;
 	display: inline-flex;
 	flex-flow: column nowrap;
 
@@ -123,7 +123,7 @@ label {
 	@include codeField;
 	display: flex;
 	margin-top: 1rem;
-	background-color: $redbg;
+	background-color: $bluebg;
 	overflow-x: scroll;
 	box-sizing: border-box;
 }
@@ -140,6 +140,7 @@ main {
 
 body {
 	width: 100%;
+	background-color: $redbg;
 }
 
 details[open] summary ~ * {

@@ -22,7 +22,7 @@ interface SidebarEndpointProps {
 function SidebarEndpoint(props:SidebarEndpointProps) {
 	const {categoryName, endpointName} = props;
 
-	return <li key={endpointName}><a className="endpoint-link" href={`/${categoryName}/${endpointName}/`}>.{endpointName}</a></li>
+	return <a className="endpoint-link" href={`/${categoryName}/${endpointName}/`}><li key={endpointName}>.{endpointName}</li></a>
 }
 
 interface SidebarGroupProps {

@@ -36,7 +36,7 @@ function IsPostOnlyWarning(props:IsPostOnlyProps) {
 	if (!props.isPostOnly) {
 		return null;
 	}
-	return <div id="isPostOnly">Note: This parameter is only available for post requests. This requires you to use a secret key. Additionally, the dynamic testing does not allow testing post requests for the aforementioned reason. Apologies for the inconvenience.</div>;
+	return <p id="isPostOnly">Note: This parameter is only available for post requests. This requires you to use a secret key. Additionally, the dynamic testing does not allow testing post requests for the aforementioned reason. Apologies for the inconvenience.</p>;
 }
 
 type RequiredParam = "albuminput"|"artistinput";

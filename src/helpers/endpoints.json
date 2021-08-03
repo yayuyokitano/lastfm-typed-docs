@@ -1,4 +1,60 @@
 {
+	"album": {
+		"addtags": {
+			"endpointName": "album.addTags",
+			"description": "Add tags to an album",
+			"parameters": {
+				"required": ["artist", "album", "tags", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"getinfo": {
+			"endpointName": "album.getInfo",
+			"description": "Gets metadata for an album, also fetches tracklist if exists",
+			"parameters": {
+				"required": ["albuminput"],
+				"optional": ["autocorrect", "username", "sk", "lang"]
+			},
+			"isPostOnly": false
+		},
+		"gettags": {
+			"endpointName": "album.getTags",
+			"description": "Gets the tags a specific user has submitted for an album",
+			"parameters": {
+				"required": ["albuminput", "userinput"],
+				"optional": ["autocorrect", "username", "sk"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "album.getTopTags",
+			"description": "Gets the most applied tags on an album.",
+			"parameters": {
+				"required": ["albuminput"],
+				"optional": ["autocorrect"]
+			},
+			"isPostOnly": false
+		},
+		"removetag": {
+			"endpointName": "album.removeTag",
+			"description": "Remove a user's application of a tag from an album",
+			"parameters": {
+				"required": ["artist", "album", "tag", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"search": {
+			"endpointName": "album.search",
+			"description": "Search last.fm for albums matching a query",
+			"parameters": {
+				"required": ["album"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		}
+	},
 	"artist": {
 		"addtags": {
 			"endpointName": "artist.addTags",
@@ -87,6 +143,95 @@
 			"parameters": {
 				"required": ["artist"],
 				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		}
+	},
+	"auth": {
+		"gettoken": {
+			"endpointName": "auth.getToken",
+			"description": "Gets a request token for an API account.",
+			"parameters": {
+				"required": [],
+				"optional": []
+			},
+			"isPostOnly": false
+		},
+		"getsession": {
+			"endpointName": "auth.getSession",
+			"description": "Gets a session key for a user.",
+			"parameters": {
+				"required": ["token"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"getmobilesession": {
+			"endpointName": "auth.getMobileSession",
+			"description": "Gets a session key for a user using password.",
+			"parameters": {
+				"required": ["username", "password"],
+				"optional": []
+			},
+			"isPostOnly": true
+		}
+	},
+	"chart": {
+		"gettopartists": {
+			"endpointName": "chart.getTopArtists",
+			"description": "Gets the most popular artists on last.fm.",
+			"parameters": {
+				"required": [],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "chart.getTopTags",
+			"description": "Gets the most applied tags on last.fm.",
+			"parameters": {
+				"required": [],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptracks": {
+			"endpointName": "chart.getTopTracks",
+			"description": "Gets the most popular tracks on last.fm.",
+			"parameters": {
+				"required": [],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		}
+	},
+	"geo": {
+		"gettopartists": {
+			"endpointName": "geo.getTopArtists",
+			"description": "Gets the most popular artists on last.fm in a country.",
+			"parameters": {
+				"required": ["country"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptracks": {
+			"endpointName": "geo.getTopTracks",
+			"description": "Gets the most popular tracks on last.fm in a country.",
+			"parameters": {
+				"required": ["country"],
+				"optional": ["page", "limit", "location"]
+			},
+			"isPostOnly": false
+		}
+	},
+	"library": {
+		"getartists": {
+			"endpointName": "library.getArtists",
+			"description": "Gets the most popular artists on last.fm in a country.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["page", "limit", "username", "sk"]
 			},
 			"isPostOnly": false
 		}

@@ -8,6 +8,8 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) =>
 			endpointName === "search" ?
 			"Query to use for searching artist." :
+			categoryName === "album" ?
+			`Name of the artist of the album to ${Util.endpointToHuman(endpointName)}.` :
 			`Name of the artist to ${Util.endpointToHuman(endpointName)}.`,
 		default: [
 			["KITANO REM"],
@@ -34,6 +36,23 @@ export const docs = {
 			["Jack in The b∅x"]
 		]
 	},
+	album: {
+		type: "string",
+		description: (categoryName:string, endpointName:string) =>
+			endpointName === "search" ?
+			"Query to use for searching album." :
+			`Name of the album to ${Util.endpointToHuman(endpointName)}.`,
+		default: [
+			["RAINSICK/オレンジ"],
+			["ヤユヨ"],
+			["ベランダのその先へ"],
+			["人間なのさ"],
+			["gloomy box"],
+			["愛が証明できること"],
+			["まっすぐなままでいい"],
+			["メンタルパンク"]
+		]
+	},
 	albuminput: {
 		type: "albumInput",
 		description: (categoryName:string, endpointName:string) => `An object containing either an artist and album property, or an mbid property, detailing the ${categoryName} to ${Util.endpointToHuman(endpointName)}.`,
@@ -53,6 +72,11 @@ export const docs = {
 		description: "Whether to use autocorrect or not",
 		default: [true]
 	},
+	country: {
+		type: "string",
+		description: "ISO 3166-1 country name of country to return data for.",
+		default: ["Norway", "Malaysia", "Japan"]
+	},
 	lang: {
 		type: "string",
 		description: "Language to return biography in. ISO 639 alpha-2 code",
@@ -63,10 +87,20 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) => `Max number of ${categoryName}s to ${Util.endpointToHuman(endpointName)}.`,
 		default: [50]
 	},
+	location: {
+		type: "string",
+		description: "name of metro area to return data for. Not sure if this actually works, but it is in the official docs so I implemented it.",
+		default: [""]
+	},
 	page: {
 		type: "number",
 		description: (categoryName:string, endpointName:string) => `Which page to ${Util.endpointToHuman(endpointName)}. Page size equals the value of the limit parameter.`,
 		default: [1]
+	},
+	password: {
+		type: "string",
+		description: (categoryName:string, endpointName:string) => `Password of a user to ${Util.endpointToHuman(endpointName)}.`,
+		default: ["no lol"]
 	},
 	sk: {
 		type: "string",
@@ -81,6 +115,11 @@ export const docs = {
 	tags: {
 		type: "string|string[]",
 		description: (categoryName:string, endpointName:string) => `Name of the tag(s) to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
+		default: [""]
+	},
+	token: {
+		type: "string|string[]",
+		description: (categoryName:string, endpointName:string) => <span>Token received from <a href="/auth/gettoken/">auth.getToken</a>.</span>,
 		default: [""]
 	},
 	userinput: {
