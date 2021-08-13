@@ -235,5 +235,144 @@
 			},
 			"isPostOnly": false
 		}
+	},
+	"tag": {
+		"getinfo": {
+			"endpointName": "tag.getInfo",
+			"description": "Gets data about a tag.",
+			"parameters": {
+				"required": ["tag"],
+				"optional": ["lang"]
+			},
+			"isPostOnly": false
+		},
+		"gettopalbums": {
+			"endpointName": "tag.getTopAlbums",
+			"description": "Gets the albums where most people have tagged using a given tag.",
+			"parameters": {
+				"required": ["tag"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettopartists": {
+			"endpointName": "tag.getTopArtists",
+			"description": "Gets the artists where most people have tagged using a given tag.",
+			"parameters": {
+				"required": ["tag"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "tag.getTopTags",
+			"description": "Gets the most applied tags on last.fm.",
+			"parameters": {
+				"required": [],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptracks": {
+			"endpointName": "tag.getTopTracks",
+			"description": "Gets the tracks where most people have tagged using a given tag.",
+			"parameters": {
+				"required": ["tag"],
+				"optional": ["page", "limit"]
+			},
+			"isPostOnly": false
+		}
+	},
+	"track": {
+		"addtags": {
+			"endpointName": "track.addTags",
+			"description": "Add tags to a track",
+			"parameters": {
+				"required": ["artist", "track", "tags", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"getcorrection": {
+			"endpointName": "track.getCorrection",
+			"description": "Check if a track and its artist have a last.fm autocorrect, and get the corrected name(s) if so.",
+			"parameters": {
+				"required": ["artist", "track"],
+				"optional": []
+			},
+			"isPostOnly": false
+		},
+		"getinfo": {
+			"endpointName": "track.getInfo",
+			"description": "Gets metadata for a track.",
+			"parameters": {
+				"required": ["trackinput"],
+				"optional": ["autocorrect", "username", "sk"]
+			},
+			"isPostOnly": false
+		},
+		"gettags": {
+			"endpointName": "track.getTags",
+			"description": "Gets the tags a specific user has submitted for an album",
+			"parameters": {
+				"required": ["trackinput", "userinput"],
+				"optional": ["autocorrect", "username", "sk"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "track.getTopTags",
+			"description": "Gets the most applied tags on an album.",
+			"parameters": {
+				"required": ["trackinput"],
+				"optional": ["autocorrect"]
+			},
+			"isPostOnly": false
+		},
+		"love": {
+			"endpointName": "track.love",
+			"description": "Love a track.",
+			"parameters": {
+				"required": ["artist", "track", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"removetag": {
+			"endpointName": "track.removeTag",
+			"description": "Remove a user's application of a tag from an album",
+			"parameters": {
+				"required": ["artist", "track", "tag", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"search": {
+			"endpointName": "track.search",
+			"description": "Search last.fm for tracks matching a query",
+			"parameters": {
+				"required": ["track"],
+				"optional": ["artist", "page", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"unlove": {
+			"endpointName": "track.unlove",
+			"description": "Unlove a track.",
+			"parameters": {
+				"required": ["artist", "track", "sk"],
+				"optional": []
+			},
+			"isPostOnly": true
+		},
+		"updatenowplaying": {
+			"endpointName": "track.updateNowPlaying",
+			"description": "Set a track as now playing for a user.",
+			"parameters": {
+				"required": ["artist", "track", "sk"],
+				"optional": ["album", "tracknumber", "context", "mbid", "duration", "albumartist"]
+			},
+			"isPostOnly": true
+		}
 	}
 }

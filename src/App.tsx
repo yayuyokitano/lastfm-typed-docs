@@ -12,7 +12,7 @@ import DisplayDocumentation from "./components/documentation/Documentation";
 
 export default function App() {
 	return (
-		<Router>
+		<Router basename={'/lastfm-typed'}>
 			<Switch>
 				<Route exact path="/">
 					<DocumentationIndex />

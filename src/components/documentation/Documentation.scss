@@ -52,7 +52,7 @@ table {
 
 }
 
-h3, h2 {
+h3, h2, #description {
 
 	font-weight: lighter;
 
@@ -70,10 +70,16 @@ h1 {
 
 }
 
-h4 {
+h3 {
 
 	font-style: italic;
-	font-weight: lighter;
+
+}
+
+.parameter-label {
+
+	font-size: 1.1rem;
+	padding-top: 1rem;
 
 }
 
@@ -151,6 +157,10 @@ body {
 
 details[open] summary ~ * {
   animation: sweep 200ms ease-in-out;
+}
+
+#description {
+	font-size: 1.2rem;
 }
 
 @keyframes sweep {

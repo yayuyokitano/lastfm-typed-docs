@@ -1,8 +1,8 @@
 import React from "react";
 import endpoints from "./endpoints.json";
-import JSONFormatter from "json-formatter-js";
-import LastFM from "lastfm-typed";
 import { InteractiveParameterField, docs } from "./InteractiveParameterField";
+
+//lastfm-typed and json-formatter-js are also imported later in the file, but is imported upon use to take advantage of code splitting.
 
 interface DocumentationProps {
 	category:string;
@@ -18,7 +18,7 @@ export default function GeneratedDocumentation(props:DocumentationProps) {
 	return(
 		<main>
 			<h1>{endpointDetails.endpointName}</h1>
-			<h3>{endpointDetails.description}</h3>
+			<p id="description">{endpointDetails.description}</p>
 			<IsPostOnlyWarning isPostOnly={endpointDetails.isPostOnly} />
 			<Usages endpointName={endpointDetails.endpointName} parameters={endpointDetails.parameters} />
 			<ParameterTable endpointName={endpointDetails.endpointName} parameters={endpointDetails.parameters} />
@@ -144,10 +144,11 @@ interface InteractiveParameterFieldsProps {
 	label:string;
 	parameters:RequiredParam[]|OptionalParam[];
 	divId:string;
+	mutualFieldNum:number;
 }
 
 function InteractiveParameterFields(props:InteractiveParameterFieldsProps) {
-	const {parameters, label, divId} = props;
+	const {parameters, label, divId, mutualFieldNum} = props;
 
 	if (parameters.length == 0) {
 		return null;
@@ -155,8 +156,8 @@ function InteractiveParameterFields(props:InteractiveParameterFieldsProps) {
 
 	return (
 		<div id={divId}>
-			<h4>{label}</h4>
-			{parameters.map(parameter => <InteractiveParameterField key={parameter} parameter={parameter}/>)}
+			<h3 className="parameter-label">{label}</h3>
+			{parameters.map(parameter => <InteractiveParameterField key={parameter} parameter={parameter} mutualFieldNum={mutualFieldNum}/>)}
 		</div>
 	)
 
@@ -168,11 +169,12 @@ interface InteractiveParametersProps {
 
 function InteractiveParameters(props:InteractiveParametersProps) {
 	const {parameters} = props;
+	const mutualFieldNum = Math.floor(Math.random() * docs.artist.default.length);
 
 	return (
 		<div id="interactive-parameters">
-			<InteractiveParameterFields divId="required-parameters" label="Required" parameters={parameters.required} />
-			<InteractiveParameterFields divId="optional-parameters" label="Optional" parameters={parameters.optional} />
+			<InteractiveParameterFields divId="required-parameters" label="Required" parameters={parameters.required} mutualFieldNum={mutualFieldNum} />
+			<InteractiveParameterFields divId="optional-parameters" label="Optional" parameters={parameters.optional} mutualFieldNum={mutualFieldNum} />
 		</div>
 	);
 }
@@ -209,13 +211,16 @@ function submitRequest(categoryName:string, endpointName:string){
 
 		}
 
-		const lastfm = new LastFM("befc94acb89d04c5d7164039769e93ef", { userAgent: "lastfm-typed documentation (yayuyokita.no/lastfm-typed)" });
-		lastfm.on("requestStart", (args, method) => console.log(method, args))
-		console.log(args);
-		const formatter = new JSONFormatter(await ((lastfm as any)[categoryName] as any)[endpointName](args));
+		const LastFM = await import("lastfm-typed");
 
+		const lastfm = new LastFM.default("befc94acb89d04c5d7164039769e93ef", { userAgent: "lastfm-typed documentation (yayuyokita.no/lastfm-typed)" });
+
+		const JSONFormatter = await import("json-formatter-js");
+
+		const formatter = new JSONFormatter.default(await ((lastfm as any)[categoryName] as any)[endpointName](args));
 		document.getElementById("result").innerHTML = "";
 		document.getElementById("result").appendChild(formatter.render());
+		
 	}
 }
 

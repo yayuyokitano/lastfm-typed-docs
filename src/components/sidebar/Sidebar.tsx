@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import endpoints from "../../helpers/endpoints.json";
 export default function Sidebar() {
 	return (
@@ -22,7 +23,7 @@ interface SidebarEndpointProps {
 function SidebarEndpoint(props:SidebarEndpointProps) {
 	const {categoryName, endpointName} = props;
 
-	return <a className="endpoint-link" href={`/${categoryName}/${endpointName}/`}><li key={endpointName}>.{endpointName}</li></a>
+	return <li key={endpointName}><Link className="endpoint-link" to={`/${categoryName}/${endpointName}/`}>.{endpointName}</Link></li>
 }
 
 interface SidebarGroupProps {

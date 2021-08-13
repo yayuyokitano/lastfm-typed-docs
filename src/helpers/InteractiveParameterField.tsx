@@ -8,18 +8,18 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) =>
 			endpointName === "search" ?
 			"Query to use for searching artist." :
-			categoryName === "album" ?
-			`Name of the artist of the album to ${Util.endpointToHuman(endpointName)}.` :
+			categoryName === "album" || categoryName === "track" ?
+			`Name of the artist of the ${categoryName} to ${Util.endpointToHuman(endpointName)}.` :
 			`Name of the artist to ${Util.endpointToHuman(endpointName)}.`,
 		default: [
 			["KITANO REM"],
-			["ヤユヨ"],
-			["Akai Ko-en"],
-			["Shiina Ringo"],
-			["アカネサス"],
-			["LOT SPiRiTS"],
-			["ミズニ ウキクサ"],
-			["Hump Back"]
+      ["ヤユヨ"],
+      ["カネヨリマサル"],
+      ["鈴"],
+      ["オルターリードコード"],
+      ["Lily Sketch"],
+      ["Akai Ko-en"],
+      ["Shiina Ringo"]
 		]
 	},
 	artistinput: {
@@ -28,12 +28,12 @@ export const docs = {
 		default: [
 			["KITANO REM"],
 			["ヤユヨ"],
-			["Lily Sketch"],
-			["オルターリードコード"],
-			["村瀬真弓"],
-			["フミンニッキ"],
 			["前田和花"],
-			["Jack in The b∅x"]
+			["Jack in The b∅x"],
+			["アカネサス"],
+			["LOT SPiRiTS"],
+			["ミズニ ウキクサ"],
+			["Hump Back"]
 		]
 	},
 	album: {
@@ -43,14 +43,14 @@ export const docs = {
 			"Query to use for searching album." :
 			`Name of the album to ${Util.endpointToHuman(endpointName)}.`,
 		default: [
-			["RAINSICK/オレンジ"],
+			["ジャンキーの革命"],
 			["ヤユヨ"],
+			["心は洗濯機のなか"],
 			["ベランダのその先へ"],
-			["人間なのさ"],
 			["gloomy box"],
-			["愛が証明できること"],
-			["まっすぐなままでいい"],
-			["メンタルパンク"]
+			["Lily Sketch"],
+			["THE PARK"],
+			["加爾基 精液 栗ノ花"]
 		]
 	},
 	albuminput: {
@@ -79,7 +79,7 @@ export const docs = {
 	},
 	lang: {
 		type: "string",
-		description: "Language to return biography in. ISO 639 alpha-2 code",
+		description: "Language to return wiki info in. ISO 639 alpha-2 code",
 		default: [""]
 	},
 	limit: {
@@ -122,6 +122,37 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) => <span>Token received from <a href="/auth/gettoken/">auth.getToken</a>.</span>,
 		default: [""]
 	},
+	track: {
+		type: "string",
+		description: (categoryName:string, endpointName:string) =>
+			endpointName === "search" ?
+			"Query to use for searching track." :
+			`Name of the track to ${Util.endpointToHuman(endpointName)}.`,
+		default: [
+			["ジャンキーの革命"],
+			["ヤユヨ"],
+			["ガールズユースとディサポイントメント"],
+			["とある女子"],
+			["gloomy box"],
+			["灰青"],
+			["絶対零度"],
+			["迷彩"]
+		]
+	},
+	trackinput: {
+		type: "trackInput",
+		description: (categoryName:string, endpointName:string) => `An object containing either an artist and album property, or an mbid property, detailing the ${categoryName} to ${Util.endpointToHuman(endpointName)}.`,
+		default: [
+			["KITANO REM", "RAINSICK"],
+			["ヤユヨ", "メアリーちゃん"],
+			["Lily Sketch", "night smoke"],
+			["フミンニッキ", "水溶世界媒体少女"],
+			["カネヨリマサル", "ガールズユースとディサポイントメント"],
+			["聴色", "悋気"],
+			["TETORA", "メンタルパンク"],
+			["ひかりのなかに", "まっすぐなままでいい"]
+		]
+	},
 	userinput: {
 		type: "userInput",
 		description: (categoryName:string, endpointName:string) => <span>Username or session key of a user to {Util.endpointToHuman(endpointName)}. Because of a <a href="https://support.last.fm/t/tags-bio-similar-artists-missing-from-artist-getinfo-response-for-artists-with-redirects/46740/3?u=mexdeep" target="_blank">current bug</a> you must always provide a username for these currently. You can optionally add sk in optional arguments to turn request into a post request.</span>,
@@ -136,15 +167,16 @@ export const docs = {
 
 interface InteractiveParameterFieldProps {
 	parameter: Parameter;
+	mutualFieldNum: number;
 }
 
 export function InteractiveParameterField(props:InteractiveParameterFieldProps) {
-	const {parameter} = props;
+	const {parameter, mutualFieldNum} = props;
 	
 	switch (docs[parameter].type) {
 
 		case "string":
-			return <label htmlFor={parameter}>{parameter}: <input type="text" id={parameter} defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
+			return <label htmlFor={parameter}>{parameter}: <input type="text" id={parameter} defaultValue={Util.randomIn(docs[parameter].default, ["artist", "album", "track"].includes(parameter) ? mutualFieldNum : -1)} /></label>;
 		
 		case "userInput":
 			return <label htmlFor="username">username: <input type="text" id="username" defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
@@ -155,6 +187,24 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 		case "boolean":
 			return <label htmlFor={parameter}>{parameter}: <input type="checkbox" id={parameter} defaultChecked={docs[parameter].default[0] as boolean} /></label>;
 		
+		case "trackInput": {
+			const [artistName, trackName] = Util.randomIn(docs.trackinput.default);
+			const artist = <label htmlFor="artist">album: <input type="text" id="artist" defaultValue={artistName} /></label>;
+			const track = <label htmlFor="track">album: <input type="text" id="track" defaultValue={trackName} /></label>;
+			const mbid = <label htmlFor="mbid">mbid: <input type="text" id="mbid" /></label>;
+			return (
+				<div className="exclusive-parameters">
+					<div className="parameter-group">
+						{artist}
+						{track}
+					</div>
+					<div className="parameter-group">
+						{mbid}
+					</div>
+				</div>
+			);
+		}
+
 		case "albumInput": {
 			const [artistName, albumName] = Util.randomIn(docs.albuminput.default);
 			const artist = <label htmlFor="artist">album: <input type="text" id="artist" defaultValue={artistName} /></label>;
