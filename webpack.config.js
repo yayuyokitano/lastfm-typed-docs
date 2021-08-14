@@ -6,7 +6,7 @@ const zlib = require("zlib")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/main.tsx",
   output: {
     filename: "bundle.js",
@@ -21,7 +21,7 @@ module.exports = {
       "stream": require.resolve("stream-browserify"),
     }
   },
-  //devtool: "source-map", //remove for production
+  devtool: "source-map", //remove for production
   module: {
     rules: [
       { test: /\.scss$/, use: [ "style-loader", "css-loader", "sass-loader" ] },

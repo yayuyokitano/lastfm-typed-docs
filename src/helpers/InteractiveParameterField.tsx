@@ -53,6 +53,11 @@ export const docs = {
 			["加爾基 精液 栗ノ花"]
 		]
 	},
+	albumartist: {
+		type: "string",
+		description: "Album artist. Only needed if album artist differs from track artist.",
+		default: [""]
+	},
 	albuminput: {
 		type: "albumInput",
 		description: (categoryName:string, endpointName:string) => `An object containing either an artist and album property, or an mbid property, detailing the ${categoryName} to ${Util.endpointToHuman(endpointName)}.`,
@@ -77,6 +82,21 @@ export const docs = {
 		description: "ISO 3166-1 country name of country to return data for.",
 		default: ["Norway", "Malaysia", "Japan"]
 	},
+	duration: {
+		type: "number",
+		description: "Duration of the track in seconds.",
+		default: [240]
+	},
+	extended: {
+		type: "boolean",
+		description: "Whether to include additional data like whether a user has loved each track.",
+		default: [false]
+	},
+	from: {
+		type: "number",
+		description: (categoryName:string, endpointName:string) => `Timestamp to ${Util.endpointToHuman(endpointName).split(" ").slice(0, -1).join(" ")} from.`,
+		default: [1626289789]
+	},
 	lang: {
 		type: "string",
 		description: "Language to return wiki info in. ISO 639 alpha-2 code",
@@ -89,7 +109,12 @@ export const docs = {
 	},
 	location: {
 		type: "string",
-		description: "name of metro area to return data for. Not sure if this actually works, but it is in the official docs so I implemented it.",
+		description: "Name of metro area to return data for. Not sure if this actually works, but it is in the official docs so I implemented it.",
+		default: [""]
+	},
+	mbid: {
+		type: "string",
+		description: "MBID of track.",
 		default: [""]
 	},
 	page: {
@@ -102,6 +127,16 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) => `Password of a user to ${Util.endpointToHuman(endpointName)}.`,
 		default: ["no lol"]
 	},
+	period: {
+		type: `"overall"|"7day"|"1month"|"3month"|"6month"|"12month"`,
+		description: (categoryName:string, endpointName:string) => `Period to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
+		default: ["overall"]
+	},
+	recenttracks: {
+		type: "boolean",
+		description: "Whether to include info about friends' recent tracks in response.",
+		default: [true]
+	},
 	sk: {
 		type: "string",
 		description: (categoryName:string, endpointName:string) => `Session key of a user to ${Util.endpointToHuman(endpointName)}.`,
@@ -110,12 +145,22 @@ export const docs = {
 	tag: {
 		type: "string",
 		description: (categoryName:string, endpointName:string) => `Name of the tag to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
-		default: [""]
+		default: ["rock", "alternative", "japanese", "indie", "singer-songwriter"]
+	},
+	taggingtype: {
+		type: `"artist"|"album"|"track"`,
+		description: (categoryName:string, endpointName:string) => `Type of item to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
+		default: ["artist"]
 	},
 	tags: {
 		type: "string|string[]",
 		description: (categoryName:string, endpointName:string) => `Name of the tag(s) to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
 		default: [""]
+	},
+	to: {
+		type: "number",
+		description: (categoryName:string, endpointName:string) => `Timestamp to ${Util.endpointToHuman(endpointName).split(" ").slice(0, -1).join(" ")} until.`,
+		default: [1628968189]
 	},
 	token: {
 		type: "string|string[]",
@@ -153,6 +198,11 @@ export const docs = {
 			["ひかりのなかに", "まっすぐなままでいい"]
 		]
 	},
+	tracknumber: {
+		type: "number",
+		description: "The number of the track within its album.",
+		default: [""]
+	},
 	userinput: {
 		type: "userInput",
 		description: (categoryName:string, endpointName:string) => <span>Username or session key of a user to {Util.endpointToHuman(endpointName)}. Because of a <a href="https://support.last.fm/t/tags-bio-similar-artists-missing-from-artist-getinfo-response-for-artists-with-redirects/46740/3?u=mexdeep" target="_blank">current bug</a> you must always provide a username for these currently. You can optionally add sk in optional arguments to turn request into a post request.</span>,
@@ -176,22 +226,22 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 	switch (docs[parameter].type) {
 
 		case "string":
-			return <label htmlFor={parameter}>{parameter}: <input type="text" id={parameter} defaultValue={Util.randomIn(docs[parameter].default, ["artist", "album", "track"].includes(parameter) ? mutualFieldNum : -1)} /></label>;
+			return <label htmlFor={parameter}>{parameter}: <input className="interactive-input" type="text" id={parameter} defaultValue={Util.randomIn(docs[parameter].default, ["artist", "album", "track"].includes(parameter) ? mutualFieldNum : -1)} /></label>;
 		
 		case "userInput":
-			return <label htmlFor="username">username: <input type="text" id="username" defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
+			return <label htmlFor="username">username: <input className="interactive-input" type="text" id="username" defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
 	
 		case "number":
-			return <label htmlFor={parameter}>{parameter}: <input type="number" id={parameter} defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
+			return <label htmlFor={parameter}>{parameter}: <input className="interactive-input" type="number" id={parameter} defaultValue={Util.randomIn(docs[parameter].default)} /></label>;
 		
 		case "boolean":
-			return <label htmlFor={parameter}>{parameter}: <input type="checkbox" id={parameter} defaultChecked={docs[parameter].default[0] as boolean} /></label>;
+			return <label htmlFor={parameter}>{parameter}: <input className="interactive-input" type="checkbox" id={parameter} defaultChecked={docs[parameter].default[0] as boolean} /></label>;
 		
 		case "trackInput": {
 			const [artistName, trackName] = Util.randomIn(docs.trackinput.default);
-			const artist = <label htmlFor="artist">album: <input type="text" id="artist" defaultValue={artistName} /></label>;
-			const track = <label htmlFor="track">album: <input type="text" id="track" defaultValue={trackName} /></label>;
-			const mbid = <label htmlFor="mbid">mbid: <input type="text" id="mbid" /></label>;
+			const artist = <label htmlFor="artist">album: <input className="interactive-input" type="text" id="artist" defaultValue={artistName} /></label>;
+			const track = <label htmlFor="track">album: <input className="interactive-input" type="text" id="track" defaultValue={trackName} /></label>;
+			const mbid = <label htmlFor="mbid">mbid: <input className="interactive-input" type="text" id="mbid" /></label>;
 			return (
 				<div className="exclusive-parameters">
 					<div className="parameter-group">
@@ -207,9 +257,9 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 
 		case "albumInput": {
 			const [artistName, albumName] = Util.randomIn(docs.albuminput.default);
-			const artist = <label htmlFor="artist">album: <input type="text" id="artist" defaultValue={artistName} /></label>;
-			const album = <label htmlFor="album">album: <input type="text" id="album" defaultValue={albumName} /></label>;
-			const mbid = <label htmlFor="mbid">mbid: <input type="text" id="mbid" /></label>;
+			const artist = <label htmlFor="artist">album: <input className="interactive-input" type="text" id="artist" defaultValue={artistName} /></label>;
+			const album = <label htmlFor="album">album: <input className="interactive-input" type="text" id="album" defaultValue={albumName} /></label>;
+			const mbid = <label htmlFor="mbid">mbid: <input className="interactive-input" type="text" id="mbid" /></label>;
 			return (
 				<div className="exclusive-parameters">
 					<div className="parameter-group">
@@ -225,8 +275,8 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 			
 		case "artistInput": {
 			const [artistName] = Util.randomIn(docs.artistinput.default);
-			const artist = <label htmlFor="artist">artist: <input type="text" id="artist" defaultValue={artistName} /></label>;
-			const mbid = <label htmlFor="mbid">mbid: <input type="text" id="mbid" /></label>;
+			const artist = <label htmlFor="artist">artist: <input className="interactive-input" type="text" id="artist" defaultValue={artistName} /></label>;
+			const mbid = <label htmlFor="mbid">mbid: <input className="interactive-input" type="text" id="mbid" /></label>;
 			return (
 				<div className="exclusive-parameters">
 					<div className="parameter-group">
@@ -236,6 +286,35 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 						{mbid}
 					</div>
 				</div>
+			);
+		}
+		
+		case `"artist"|"album"|"track"`: {
+			return (
+				<label htmlFor={parameter}>
+					{parameter}: 
+					<select id={parameter} className="interactive-input" defaultValue={Util.randomIn(docs[parameter].default)}>
+						<option value="artist">artist</option>
+						<option value="album">album</option>
+						<option value="track">track</option>
+					</select>
+				</label>
+			);
+		}
+
+		case `"overall"|"7day"|"1month"|"3month"|"6month"|"12month"`: {
+			return (
+				<label htmlFor={parameter}>
+					{parameter}: 
+					<select id={parameter} className="interactive-input" defaultValue={Util.randomIn(docs[parameter].default)}>
+						<option value="overall">overall</option>
+						<option value="7day">7day</option>
+						<option value="1month">1month</option>
+						<option value="3month">3month</option>
+						<option value="6month">6month</option>
+						<option value="12month">12month</option>
+					</select>
+				</label>
 			);
 		}
 	}

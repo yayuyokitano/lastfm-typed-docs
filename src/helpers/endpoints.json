@@ -370,9 +370,128 @@
 			"description": "Set a track as now playing for a user.",
 			"parameters": {
 				"required": ["artist", "track", "sk"],
-				"optional": ["album", "tracknumber", "context", "mbid", "duration", "albumartist"]
+				"optional": ["album", "tracknumber", "mbid", "duration", "albumartist"]
 			},
 			"isPostOnly": true
+		}
+	},
+	"user": {
+		"getfriends": {
+			"endpointName": "user.getFriends",
+			"description": "Gets a list of friends for a user.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["recenttracks", "limit", "page"]
+			},
+			"isPostOnly": false
+		},
+		"getinfo": {
+			"endpointName": "user.getInfo",
+			"description": "Gets info about a user.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username"]
+			},
+			"isPostOnly": false
+		},
+		"getlovedtracks": {
+			"endpointName": "user.getLovedTracks",
+			"description": "Gets a list of a user's loved tracks.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit", "page"]
+			},
+			"isPostOnly": false
+		},
+		"getpersonaltags": {
+			"endpointName": "user.getPersonalTags",
+			"description": "Gets a list of the artists/albums/tracks a user has applied a specified tag to.",
+			"parameters": {
+				"required": ["userinput", "tag", "taggingtype"],
+				"optional": ["sk", "username", "limit", "page"]
+			},
+			"isPostOnly": false
+		},
+		"getrecenttracks": {
+			"endpointName": "user.getRecentTracks",
+			"description": "Gets a list of scrobbles for a user, starting from the most recent one.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit", "page", "from", "to", "extended"]
+			},
+			"isPostOnly": false
+		},
+		"gettopalbums": {
+			"endpointName": "user.getTopAlbums",
+			"description": "Gets a user's most scrobbled albums for a period.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit", "page", "period"]
+			},
+			"isPostOnly": false
+		},
+		"gettopartists": {
+			"endpointName": "user.getTopArtists",
+			"description": "Gets a user's most scrobbled artists for a period.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit", "page", "period"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptags": {
+			"endpointName": "user.getTopTags",
+			"description": "Gets a user's most applied tags.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit"]
+			},
+			"isPostOnly": false
+		},
+		"gettoptracks": {
+			"endpointName": "user.getTopTracks",
+			"description": "Gets a user's most scrobbled tracks for a period.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["sk", "username", "limit", "page", "period"]
+			},
+			"isPostOnly": false
+		},
+		"getweeklyalbumchart": {
+			"endpointName": "user.getWeeklyAlbumChart",
+			"description": "Gets weekly album chart for a user. Returns most recent if none supplied.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["username", "sk", "limit", "from", "to"]
+			},
+			"isPostOnly": false
+		},
+		"getweeklyartistchart": {
+			"endpointName": "user.getWeeklyArtistChart",
+			"description": "Gets weekly artist chart for a user. Returns most recent if none supplied.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["username", "sk", "limit", "from", "to"]
+			},
+			"isPostOnly": false
+		},
+		"getweeklychartlist": {
+			"endpointName": "user.getWeeklyChartList",
+			"description": "Gets a list of applicable timestamps for weekly chart endpoints.",
+			"parameters": {
+				"required": [],
+				"optional": []
+			},
+			"isPostOnly": false
+		},
+		"getweeklytrackchart": {
+			"endpointName": "user.getWeeklyTrackChart",
+			"description": "Gets weekly track chart for a user. Returns most recent if none supplied.",
+			"parameters": {
+				"required": ["userinput"],
+				"optional": ["username", "sk", "limit", "from", "to"]
+			},
+			"isPostOnly": false
 		}
 	}
 }

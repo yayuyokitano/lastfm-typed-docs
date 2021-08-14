@@ -17,7 +17,7 @@ export default function GeneratedDocumentation(props:DocumentationProps) {
 	document.title = `${endpointDetails.endpointName} | lastfm-typed documentation`;
 	return(
 		<main>
-			<h1>{endpointDetails.endpointName}</h1>
+			<h1 id="endpoint-name">{endpointDetails.endpointName}</h1>
 			<p id="description">{endpointDetails.description}</p>
 			<IsPostOnlyWarning isPostOnly={endpointDetails.isPostOnly} />
 			<Usages endpointName={endpointDetails.endpointName} parameters={endpointDetails.parameters} />
@@ -190,10 +190,15 @@ function submitRequest(categoryName:string, endpointName:string){
 	return async() => {
 		let args:ParameterValues = {};
 
-		console.log(document.querySelectorAll("#interactive-parameters input"));
+		console.log(document.querySelectorAll(".interactive-input"));
 
-		for (let parameter of document.querySelectorAll("#interactive-parameters input") as NodeListOf<HTMLInputElement>) {
-			console.log(parameter);
+		for (let parameter of document.querySelectorAll(".interactive-input") as NodeListOf<HTMLInputElement>) {
+			console.log(parameter.tagName);
+			if (parameter.tagName === "SELECT") {
+				args[parameter.id] = parameter.value;
+				continue;
+			}
+
 			switch (parameter.type) {
 
 				case "text":

@@ -155,6 +155,10 @@ body {
 	background-color: $redbg;
 }
 
+#endpoint-name {
+	margin-top: 0;
+}
+
 details[open] summary ~ * {
   animation: sweep 200ms ease-in-out;
 }
