@@ -143,11 +143,19 @@ label {
 #documentation-page {
 	display:flex;
 	max-width: 100%;
+	overflow-y: hidden;
+	height: 100vh;
 }
 
 main {
-	margin: 1rem;
+	padding-left: 1rem;
 	overflow-x: hidden;
+	height: 100vh;
+	overflow-y: scroll;
+}
+
+main h1 {
+	padding-top: 1rem;
 }
 
 body {

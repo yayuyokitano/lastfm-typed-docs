@@ -82,6 +82,11 @@ export const docs = {
 		description: "ISO 3166-1 country name of country to return data for.",
 		default: ["Norway", "Malaysia", "Japan"]
 	},
+	detailtypes: {
+		type: `("artist"|"album"|"track")[]`,
+		description: (categoryName:string, endpointName:string) => `Types of details to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
+		default: ["artist"]
+	},
 	duration: {
 		type: "number",
 		description: "Duration of the track in seconds.",
@@ -299,6 +304,16 @@ export function InteractiveParameterField(props:InteractiveParameterFieldProps) 
 						<option value="track">track</option>
 					</select>
 				</label>
+			);
+		}
+
+		case `("artist"|"album"|"track")[]`: {
+			return (
+				<div className="detail-container">
+						<input type="checkbox" id="detail-artist" value="artist" /><label htmlFor="detail-artist" >artist</label>
+						<input type="checkbox" id="detail-album" value="album" /><label htmlFor="detail-album" >album</label>
+						<input type="checkbox" id="detail-track" value="track" /><label htmlFor="detail-track" >track</label>
+				</div>
 			);
 		}
 

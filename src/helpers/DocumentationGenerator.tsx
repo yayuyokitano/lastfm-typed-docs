@@ -191,6 +191,15 @@ function submitRequest(categoryName:string, endpointName:string){
 		let args:ParameterValues = {};
 
 		console.log(document.querySelectorAll(".interactive-input"));
+		const detailContainer = document.querySelector(".detail-container");
+		if (detailContainer) {
+			args.detailTypes = [];
+			for (let detail of detailContainer.querySelectorAll("input")) {
+				if (detail.checked) {
+					args.detailTypes.push(detail.value);
+				}
+			}
+		}
 
 		for (let parameter of document.querySelectorAll(".interactive-input") as NodeListOf<HTMLInputElement>) {
 			console.log(parameter.tagName);
