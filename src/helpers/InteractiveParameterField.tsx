@@ -127,6 +127,11 @@ export const docs = {
 		description: (categoryName:string, endpointName:string) => `Which page to ${Util.endpointToHuman(endpointName)}. Page size equals the value of the limit parameter.`,
 		default: [1]
 	},
+	parallelCaches: {
+		type: "number",
+		description: `Number of parallel requests to make. Higher number will be faster, but you may run into rate limits (default 1).`,
+		default: [0]
+	},
 	password: {
 		type: "string",
 		description: (categoryName:string, endpointName:string) => `Password of a user to ${Util.endpointToHuman(endpointName)}.`,
@@ -136,6 +141,11 @@ export const docs = {
 		type: `"overall"|"7day"|"1month"|"3month"|"6month"|"12month"`,
 		description: (categoryName:string, endpointName:string) => `Period to ${Util.endpointToHuman(endpointName).split(" ")[0]}.`,
 		default: ["overall"]
+	},
+	previouslyCached: {
+		type: "number",
+		description: `Number of scrobbles already cached (default 0).`,
+		default: [0]
 	},
 	recenttracks: {
 		type: "boolean",
@@ -207,6 +217,16 @@ export const docs = {
 		type: "number",
 		description: "The number of the track within its album.",
 		default: [""]
+	},
+	user1: {
+		type: "string",
+		description: (categoryName:string, endpointName:string) => `Username of the first user to ${Util.endpointToHuman(endpointName)}.`,
+		default: ["Mexdeep"]
+	},
+	user2: {
+		type: "string",
+		description: (categoryName:string, endpointName:string) => `Username of the second user to ${Util.endpointToHuman(endpointName)}.`,
+		default: ["gowon_"]
 	},
 	userinput: {
 		type: "userInput",

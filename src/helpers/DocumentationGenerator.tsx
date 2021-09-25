@@ -1,4 +1,5 @@
 import React from "react";
+import DetailedEndpoint from "./DetailedEndpoint";
 import endpoints from "./endpoints.json";
 import { InteractiveParameterField, docs } from "./InteractiveParameterField";
 
@@ -22,7 +23,7 @@ export default function GeneratedDocumentation(props:DocumentationProps) {
 			<IsPostOnlyWarning isPostOnly={endpointDetails.isPostOnly} />
 			<Usages endpointName={endpointDetails.endpointName} parameters={endpointDetails.parameters} />
 			<ParameterTable endpointName={endpointDetails.endpointName} parameters={endpointDetails.parameters} />
-			<Playground parameters={endpointDetails.parameters} isPostOnly={endpointDetails.isPostOnly} categoryName={categoryName} endpointName={endpointName} />
+			<Playground parameters={endpointDetails.parameters} isDetailedEndpoint={endpointDetails.isDetailedEndpoint} isPostOnly={endpointDetails.isPostOnly} categoryName={categoryName} endpointName={endpointName} />
 		</main>
 	);
 
@@ -36,7 +37,7 @@ function IsPostOnlyWarning(props:IsPostOnlyProps) {
 	if (!props.isPostOnly) {
 		return null;
 	}
-	return <p id="isPostOnly">Note: This parameter is only available for post requests. This requires you to use a secret key. Additionally, the dynamic testing does not allow testing post requests for the aforementioned reason. Apologies for the inconvenience.</p>;
+	return <p className="note" id="isPostOnly">Note: This parameter is only available for post requests. This requires you to use a secret key. Additionally, the dynamic testing does not allow testing post requests for the aforementioned reason. Apologies for the inconvenience.</p>;
 }
 
 type RequiredParam = "albuminput"|"artistinput";
@@ -58,6 +59,7 @@ interface EndpointDetails {
 	description:string;
 	parameters:Parameters;
 	isPostOnly:boolean;
+	isDetailedEndpoint:boolean;
 }
 
 const formatRequiredParams = (requiredParameters:string[]) => `${requiredParameters.join(", ")}${requiredParameters.length > 0 ? ", " : ""}`;
@@ -184,6 +186,7 @@ interface PlaygroundProps {
 	isPostOnly:boolean;
 	categoryName:string;
 	endpointName:string;
+	isDetailedEndpoint:boolean;
 }
 
 function submitRequest(categoryName:string, endpointName:string){
@@ -228,6 +231,7 @@ function submitRequest(categoryName:string, endpointName:string){
 		const LastFM = await import("lastfm-typed");
 
 		const lastfm = new LastFM.default("befc94acb89d04c5d7164039769e93ef", { userAgent: "lastfm-typed documentation (yayuyokita.no/lastfm-typed)" });
+		lastfm.on("requestStart", (args, method) => console.log(method, args));
 
 		const JSONFormatter = await import("json-formatter-js");
 
@@ -239,10 +243,14 @@ function submitRequest(categoryName:string, endpointName:string){
 }
 
 function Playground(props:PlaygroundProps) {
-	const {parameters, isPostOnly, categoryName, endpointName} = props;
+	const {parameters, isPostOnly, isDetailedEndpoint, categoryName, endpointName} = props;
 
 	if (isPostOnly) {
 		return null;
+	}
+
+	if (isDetailedEndpoint) {
+		return <DetailedEndpoint categoryName={categoryName} endpointName={endpointName} />
 	}
 
 	return (

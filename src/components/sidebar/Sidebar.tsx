@@ -44,5 +44,5 @@ function SidebarGroup(props:SidebarGroupProps) {
 				</ul>
 			</details>
 		</div>
-	)
+	);
 }

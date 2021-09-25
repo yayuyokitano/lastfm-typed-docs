@@ -468,6 +468,23 @@
 				"required": ["userinput", "detailtypes"],
 				"optional": ["username", "sk"]
 			}
+		},
+		"getmatchingartists": {
+			"endpointName": "helper.getMatchingArtists",
+			"description": "Gets the shared artists and playcounts between two users. Playcount array is sorted as [user1, user2]. Limited to a maximum of 1000.",
+			"parameters": {
+				"required": ["user1", "user2", "limit", "period"],
+				"optional": []
+			}
+		},
+		"cachescrobbles": {
+			"endpointName": "helper.cacheScrobbles",
+			"description": "Goes through the scrobbles of an individual user, and returns an event emitter that will return every scrobble the user has made, or every scrobble made after a certain number of scrobbles.",
+			"parameters": {
+				"required": ["username"],
+				"optional": ["previouslyCached", "parallelCaches"]
+			},
+			"isDetailedEndpoint": true
 		}
 	}
 }

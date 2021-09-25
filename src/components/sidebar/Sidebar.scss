@@ -17,6 +17,7 @@ nav {
 	position: sticky;
 	top: 0;
 	overflow-y: scroll;
+	width: 10em;
 }
 
 hr {
@@ -25,10 +26,23 @@ hr {
 	height: 1px;
 	border: none;
 	background: linear-gradient(to right, $bluebg, $redbg, $redbg);
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 ul {
 	list-style-type: none;
+	padding: 0;
+	margin-bottom: 0.5em;
+	margin-top: 0;
+}
+
+.endpoint-link {
+	display: block;
+}
+
+summary {
+	padding: 0.5em 0;
 }
 
 li:hover {
