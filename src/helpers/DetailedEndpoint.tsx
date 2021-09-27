@@ -21,16 +21,16 @@ const endpoints:{
 			<SyntaxHighlighter language="javascript" style={vs}>{`let scrobbleCacher = await lastfm.helper.cacheScrobbles("Mexdeep");
 \n
 \nscrobbleCacher.on("start", (data) => {
-\nconsole.log(\`Found \${data.count} scrobbles, starting (0/\${data.totalPages}).\`);
+\n\tconsole.log(\`Found \${data.count} scrobbles, starting (0/\${data.totalPages}).\`);
 \n});
 \n
 \nscrobbleCacher.on("data", (data) => {
-\ndatabase.addScrobblesBulk(data.data);
-\nconsole.log(\`\${data.completedPages}/\${data.totalPages} (\${(data.progress * 100).toFixed(2)}%)\`);
+\n\tdatabase.addScrobblesBulk(data.data);
+\n\tconsole.log(\`\${data.completedPages}/\${data.totalPages} (\${(data.progress * 100).toFixed(2)}%)\`);
 \n});
 \n
 \nscrobbleCacher.on("close", () => {
-\nconsole.log("Caching completed.");
+\n\tconsole.log("Caching completed.");
 \n});`}</SyntaxHighlighter><br />
 			<SyntaxHighlighter language="javascript" style={vs}>{`Found 19017 scrobbles, starting (0/20).
 \n1/20 (5.00%)

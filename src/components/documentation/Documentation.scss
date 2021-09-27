@@ -153,10 +153,12 @@ main {
 	overflow-y: scroll;
 	position: absolute;
 	top: 0;
+	padding-right: 1em;
 }
 
 main h1 {
 	padding-top: 1rem;
+	margin-top: 0;
 }
 
 body {
@@ -174,6 +176,27 @@ details[open] summary ~ * {
 
 #description {
 	font-size: 1.2rem;
+}
+
+.note::before {
+	background-color: $reddark;
+	color: #FFF;
+	content: "Notice";
+	display: block;
+	font-style: italic;
+	font-size: 1.5em;
+	padding-top: 0.12em;
+	line-height: 0.75;
+	margin-bottom: 0.25em;
+	padding-left: 0.25rem;
+	margin-left: -0.5rem;
+	margin-right: -0.5rem;
+}
+
+.note {
+	background-color: $bluebg;
+	padding: 0.5rem;
+	padding-top: 0;
 }
 
 @keyframes sweep {
