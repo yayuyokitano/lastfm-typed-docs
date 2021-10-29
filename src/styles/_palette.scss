@@ -1,9 +1,12 @@
-$red: #fc4445;
 $redlight: #e5554b;
 $reddark: #c23937;
-$redbg: #faebeb;
 $blue1: #3feee6;
 $blue2: #55bcc9;
 $blue3: #97caef;
-$blue4: #cafafe; 
-$bluebg: #ebfefd;
+$blue4: #cafafe;
+:root{
+	--red: #fc4445;
+	--bluebg: #ebfefd;
+	--sidebarhover: #faebeb;
+	--redbg: #faebeb;
+}

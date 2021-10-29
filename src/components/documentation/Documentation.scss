@@ -1,6 +1,10 @@
 @import "../../styles/base.scss";
 @import "../../styles/palette";
 
+@media (prefers-color-scheme: dark) {
+	@import "../../styles/palette_dark";
+}
+
 table {
 
 	%cell {
@@ -12,7 +16,7 @@ table {
 	th {
 
 		@extend %cell;
-		background-color: $red;
+		background-color: var(--red);
 		color: #FFF;
 
 	}
@@ -20,7 +24,7 @@ table {
 	td {
 
 		@extend %cell;
-		background-color: $bluebg;
+		background-color: var(--bluebg);
 
 	}
 
@@ -45,7 +49,7 @@ table {
 #usage {
 
 	@include codeField;
-	background-color: $red;
+	background-color: var(--red);
 	display: inline-block;
 	color: #FFF;
 	line-height: 2em;
@@ -118,7 +122,7 @@ label {
 
 .exclusive-parameters {
 
-	background-color: $bluebg;
+	background-color: var(--bluebg);
 	display: inline-flex;
 	flex-flow: column nowrap;
 
@@ -135,7 +139,7 @@ label {
 	@include codeField;
 	display: flex;
 	margin-top: 1rem;
-	background-color: $bluebg;
+	background-color: var(--bluebg);
 	overflow-x: scroll;
 	box-sizing: border-box;
 }
@@ -163,7 +167,7 @@ main h1 {
 
 body {
 	width: 100%;
-	background-color: $redbg;
+	background-color: var(--redbg);
 }
 
 #endpoint-name {
@@ -194,7 +198,7 @@ details[open] summary ~ * {
 }
 
 .note {
-	background-color: $bluebg;
+	background-color: var(--bluebg);
 	padding: 0.5rem;
 	padding-top: 0;
 }

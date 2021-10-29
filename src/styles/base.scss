@@ -13,7 +13,7 @@ html {
 
 button {
 
-	background-color: $red;
+	background-color: var(--red);
 	font-size: 1.2rem;
 	cursor: pointer;
 	border: none;

@@ -1,6 +1,11 @@
 @import "../../styles/base.scss";
 @import "../../styles/palette";
 
+@media (prefers-color-scheme: dark) {
+	@import "../../styles/palette_dark";
+}
+
+
 .sidebar-header{
 	font-size: 1.2rem;
 	margin-top: 0;
@@ -12,7 +17,7 @@ summary {
 
 nav {
 	padding: 1rem;
-	background-color: $bluebg;
+	background-color: var(--bluebg);
 	height: 100vh;
 	position: sticky;
 	top: 0;
@@ -25,7 +30,7 @@ hr {
 	margin-left: -1rem;
 	height: 1px;
 	border: none;
-	background: linear-gradient(to right, $bluebg, $redbg, $redbg);
+	background: linear-gradient(to right, var(--bluebg), var(--redbg), var(--redbg));
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -46,5 +51,5 @@ summary {
 }
 
 li:hover {
-	background-color: $redbg;
+	background-color: var(--sidebarhover);
 }

@@ -232,6 +232,7 @@ function submitRequest(categoryName:string, endpointName:string){
 
 		const lastfm = new LastFM.default("befc94acb89d04c5d7164039769e93ef", { userAgent: "lastfm-typed documentation (yayuyokita.no/lastfm-typed)" });
 		lastfm.on("requestStart", (args, method) => console.log(method, args));
+		lastfm.on("requestComplete", (args, time, response) => console.log(args, time, response));
 
 		const JSONFormatter = await import("json-formatter-js");
 
