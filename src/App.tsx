@@ -8,6 +8,7 @@ import {
 	useLocation
 } from "react-router-dom";
 import DocumentationIndex from "./components/documentation/DocumentationIndex";
+import Logging from "./components/documentation/Logging";
 import DisplayDocumentation from "./components/documentation/Documentation";
 import Sidebar from "./components/sidebar/Sidebar";
 
@@ -19,6 +20,9 @@ export default function App() {
 				<Switch>
 					<Route exact path="/">
 						<DocumentationIndex />
+					</Route>
+					<Route exact path="/logging/">
+						<Logging />
 					</Route>
 					<Route path="*">
 						<DocumentationApp />

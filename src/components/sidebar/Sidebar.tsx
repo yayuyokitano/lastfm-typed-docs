@@ -12,7 +12,30 @@ export default function Sidebar() {
 import "./Sidebar.scss";
 
 function SidebarHeader() {
-	return <h1 className="sidebar-header">yayuyokitano</h1>;
+	return (
+		<div>
+			<Link className="endpoint-link" to="/"><h1 className="sidebar-header">lastfm-typed</h1></Link>
+			<PrimaryLink target="/" text="Getting Started" />
+			<PrimaryLink target="/logging/" text="Logging" />
+		</div>
+	);
+}
+
+interface PrimaryLinkProps {
+	target:string;
+	text:string;
+}
+
+function PrimaryLink(props:PrimaryLinkProps) {
+
+	const {target, text} = props;
+
+	return (
+		<div className="category">
+			<hr />
+			<Link className="primary-link" to={target}>{text}</Link>
+		</div>
+	);
 }
 
 interface SidebarEndpointProps {

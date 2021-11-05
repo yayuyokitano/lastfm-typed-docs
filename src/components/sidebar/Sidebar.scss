@@ -44,6 +44,19 @@ ul {
 
 .endpoint-link {
 	display: block;
+	text-decoration: none;
+	color: inherit;
+}
+
+.primary-link {
+	display: block;
+	padding: 0.5em 0;
+	text-decoration: none;
+	color: inherit;
+}
+
+.primary-link:hover {
+	background-color: var(--sidebarhover);
 }
 
 summary {

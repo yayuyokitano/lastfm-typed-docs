@@ -138,10 +138,11 @@ label {
 
 	@include codeField;
 	display: flex;
-	margin-top: 1rem;
+	margin: 1rem auto;
 	background-color: var(--bluebg);
 	overflow-x: scroll;
 	box-sizing: border-box;
+
 }
 
 #documentation-page {
@@ -152,7 +153,8 @@ label {
 
 main {
 	margin-left: 12.5em;
-	overflow-x: hidden;
+	overflow-x: scroll;
+	width: calc(100% - 13.5em);
 	height: 100vh;
 	overflow-y: scroll;
 	position: absolute;

@@ -23,14 +23,20 @@ const lastfm = new LastFMTyped(apiKey:string, options?:{apiSecret?:string, userA
 			<h3>Examples</h3>
 			<p>A simple authentication example:</p>
 			<CodeBlock content={`const token = await lastfm.auth.getToken();
-\n
-\n//replace this with whatever method you would use to show the url to the user
-\nsendToUser(\`https://www.last.fm/api/auth?api_key=\${config.lastfm.key}&token=\${token}\`);
-\n
-\n//replace this with whatever method you use to determine that the user has accepted integration.
-\nawait userInput;
-\n	
-\nconst session = await lastfm.auth.getSession(token);`} />
+
+//replace this with whatever method you would use to show the url to the user
+sendToUser(\`https://www.last.fm/api/auth?api_key=\${config.lastfm.key}&token=\${token}\`);
+
+//replace this with whatever method you use to determine that the user has accepted integration.
+await userInput;
+	
+const session = await lastfm.auth.getSession(token);`} />
+			<p>Getting info about a user:</p>
+			<CodeBlock content={`const userInfo = await lastfm.user.getInfo("Mexdeep");`} />
+			<h2>Helper Methods</h2>
+			<p>lastfm-typed ships with a variety of helper functions. The first group of helper methods are designed to help you with method parameters. These are ArtistFromMBID, AlbumFromMBID, TrackFromMBID, ArtistFromName, AlbumFromName, and TrackFromName. The MBID functions takes a single MBID parameter, ArtistFromName takes a single artist name parameter, while TrackFromName and AlbumFromName take two parameters, the artist name and the name of the track/album. These methods then returns a ArtistInput, AlbumInput, or TrackInput that you can use with the getter functions.</p>
+			<CodeBlock content={`const album = await lastfm.album.getInfo(lastfm.helper.AlbumFromName("KITANO REM", "RAINSICK/オレンジ"), {username:"Mexdeep"});`} />
+			<p>There are also some helper functions that add some basic functionality. These more complicated helper functions are documented in the sidebar.</p>
 		</main>
 	)
 }
