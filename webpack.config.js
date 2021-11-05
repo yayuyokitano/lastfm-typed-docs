@@ -25,6 +25,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.scss$/, use: [ "style-loader", "css-loader", "sass-loader" ] },
+			{ test: /\.png/, type: 'asset/resource' },
       {
 				test: /\.(js|jsx|tsx|ts)$/,
 				exclude: /(node_modules|bower_components)/,

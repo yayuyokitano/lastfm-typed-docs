@@ -11,6 +11,7 @@ import DocumentationIndex from "./components/documentation/DocumentationIndex";
 import Logging from "./components/documentation/Logging";
 import DisplayDocumentation from "./components/documentation/Documentation";
 import Sidebar from "./components/sidebar/Sidebar";
+import Icons from "./components/icons/Icons";
 
 export default function App() {
 	return (
@@ -28,6 +29,7 @@ export default function App() {
 						<DocumentationApp />
 					</Route>
 				</Switch>
+				<Icons />
 			</Router>
 		</div>
 	);
