@@ -2,6 +2,7 @@ import React from "react";
 import CodeBlock from "../../helpers/CodeBlock";
 
 export default function DocumentationIndex() {
+	document.title = "Getting Started | lastfm-typed documentation"
 	return (
 		<main>
 			<h1>lastfm-typed</h1>

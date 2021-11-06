@@ -6,11 +6,11 @@ const zlib = require("zlib")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/main.tsx",
   output: {
     filename: "bundle.js",
-		publicPath: '/',
+		publicPath: '/lastfm-typed/',
     path: path.resolve(__dirname, "dist")
   },
   resolve: {
@@ -52,7 +52,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-		publicPath:'/',
+		publicPath:'/lastfm-typed/',
 		historyApiFallback: true,
   },
 	optimization: {

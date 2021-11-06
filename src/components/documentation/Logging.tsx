@@ -2,6 +2,7 @@ import React from "react";
 import CodeBlock from "../../helpers/CodeBlock";
 
 export default function Logging() {
+	document.title = "Logging | lastfm-typed documentation";
 	return (
 		<main>
 			<h1>Logging</h1>
