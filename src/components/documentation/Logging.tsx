@@ -19,91 +19,76 @@ lastfm.on("requestComplete", (args, time, res) => {
 });
 
 const nowplaying = await lastfm.helper.getNowPlaying("Mexdeep", ["artist", "album", "track"]);`} />
-		<CodeBlock content={`REQUEST START:  GET { method: 'user.getRecentTracks', user: 'mexdeep', limit: 1 }
-REQUEST COMPLETE:  { method: 'user.getRecentTracks', user: 'mexdeep', limit: 1 } Executed in 563ms {
-	recenttracks: {
-		'@attr': {
-			page: '1',
-			total: '22243',
-			user: 'Mexdeep',
-			perPage: '1',
-			totalPages: '22243'
-		},
-		track: [ [Object], [Object] ]
-	}
-}
-REQUEST START:  GET { method: 'artist.getInfo', artist: '聴色', username: 'mexdeep' }
-REQUEST START:  GET {
-	method: 'album.getInfo',
-	artist: '聴色',
-	album: 'さよならを交わすとき',
-	username: 'mexdeep'
-}
-REQUEST START:  GET {
-	method: 'track.getInfo',
-	artist: '聴色',
-	track: '会者定離',
-	username: 'mexdeep'
+		<CodeBlock content={`REQUEST START:  GET {
+	method: 'user.getRecentTracks',
+	user: 'Mexdeep',
+	limit: 1,
+	extended: 0
 }
 REQUEST COMPLETE:  {
-	method: 'track.getInfo',
-	artist: '聴色',
-	track: '会者定離',
-	username: 'mexdeep'
-} Executed in 393ms {
-	track: {
-		name: '会者定離',
-		url: 'https://www.last.fm/music/%E8%81%B4%E8%89%B2/_/%E4%BC%9A%E8%80%85%E5%AE%9A%E9%9B%A2',
-		duration: '242000',
-		streamable: { '#text': '0', fulltrack: '0' },
-		listeners: '2',
-		playcount: '7',
-		artist: { name: '聴色', url: 'https://www.last.fm/music/%E8%81%B4%E8%89%B2' },
-		album: {
-			artist: 'Various Artists',
-			title: 'スクールズアウト2018 コンピレーション',
-			url: 'https://www.last.fm/music/Various+Artists/%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB%E3%82%BA%E3%82%A2%E3%82%A6%E3%83%882018+%E3%82%B3%E3%83%B3%E3%83%94%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3',
-			image: [Array]
-		},
-		userplaycount: '13',
-		userloved: '1',
-		toptags: { tag: [] }
+	method: 'user.getRecentTracks',
+	user: 'Mexdeep',
+	limit: 1,
+	extended: 0
+} Executed in 574ms {
+	recenttracks: {
+		track: [ [Object] ],
+		'@attr': {
+			user: 'Mexdeep',
+			totalPages: '33423',
+			page: '1',
+			perPage: '1',
+			total: '33423'
+		}
 	}
 }
-REQUEST COMPLETE:  { method: 'artist.getInfo', artist: '聴色', username: 'mexdeep' } Executed in 400ms {
+REQUEST START:  GET { method: 'artist.getInfo', artist: 'アトゾメ', username: 'Mexdeep' }
+REQUEST START:  GET {
+	method: 'album.getInfo',
+	artist: 'アトゾメ',
+	album: 'カルダディール・ダリー',
+	username: 'Mexdeep'
+}
+REQUEST START:  GET {
+	method: 'track.getInfo',
+	artist: 'アトゾメ',
+	track: 'カルダディール・ダリー',
+	username: 'Mexdeep'
+}
+REQUEST COMPLETE:  {
+	method: 'album.getInfo',
+	artist: 'アトゾメ',
+	album: 'カルダディール・ダリー',
+	username: 'Mexdeep'
+} Executed in 290ms {
+	album: {
+		artist: 'アトゾメ',
+		mbid: '',
+		tags: '',
+		playcount: '0',
+		image: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+		url: 'https://www.last.fm/music/%E3%82%A2%E3%83%88%E3%82%BE%E3%83%A1/%E3%82%AB%E3%83%AB%E3%83%80%E3%83%87%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%80%E3%83%AA%E3%83%BC',
+		name: 'カルダディール・ダリー',
+		listeners: '0',
+		userplaycount: 13
+	}
+}
+REQUEST COMPLETE:  { method: 'artist.getInfo', artist: 'アトゾメ', username: 'Mexdeep' } Executed in 663ms {
 	artist: {
-		name: '聴色',
-		url: 'https://www.last.fm/music/%E8%81%B4%E8%89%B2',
+		name: 'アトゾメ',
+		url: 'https://www.last.fm/music/%E3%82%A2%E3%83%88%E3%82%BE%E3%83%A1',
 		image: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
 		streamable: '0',
 		ontour: '0',
-		stats: { listeners: '5', playcount: '345', userplaycount: '335' },
-		similar: { artist: [] },
+		stats: { listeners: '26', playcount: '110', userplaycount: '17' },
+		similar: { artist: [Array] },
 		tags: { tag: [] },
 		bio: {
 			links: [Object],
 			published: '01 Jan 1970, 00:00',
-			summary: ' <a href="https://www.last.fm/music/%E8%81%B4%E8%89%B2">Read more on Last.fm</a>',
+			summary: ' <a href="https://www.last.fm/music/%E3%82%A2%E3%83%88%E3%82%BE%E3%83%A1">Read more on Last.fm</a>',
 			content: ''
 		}
-	}
-}
-REQUEST COMPLETE:  {
-	method: 'album.getInfo',
-	artist: '聴色',
-	album: 'さよならを交わすとき',
-	username: 'mexdeep'
-} Executed in 477ms {
-	album: {
-		name: 'さよならを交わすとき',
-		artist: '聴色',
-		url: 'https://www.last.fm/music/%E8%81%B4%E8%89%B2/%E3%81%95%E3%82%88%E3%81%AA%E3%82%89%E3%82%92%E4%BA%A4%E3%82%8F%E3%81%99%E3%81%A8%E3%81%8D',
-		image: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
-		listeners: '3',
-		playcount: '50',
-		userplaycount: '335',
-		tracks: { track: [] },
-		tags: { tag: [] }
 	}
 }
 `} />

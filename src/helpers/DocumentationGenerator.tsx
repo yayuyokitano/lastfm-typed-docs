@@ -80,6 +80,9 @@ function Usages(props:UsageProps) {
 		<div id="usage-container">
 			<h2>Usage:</h2>
 			<div id="usage">lastfm.{endpointName}( {formatRequiredParams(parameters.required)}{formatOptionalParams(parameters.optional)} )</div>
+			<br />
+			<br />
+			<div id="usage">lastfm.{endpointName}( {formatOptionalParams([...parameters.required, ...parameters.optional])} )</div>
 		</div>
 	);
 
