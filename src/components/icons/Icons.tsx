@@ -8,8 +8,8 @@ export default function Icons() {
 
 	return (
 		<div className="icon-group">
-			<a href="https://github.com/yayuyokitano/lastfm-typed" target="_blank">
-				<img src={isDarkTheme() ? GitHubLight : GitHubDark} alt="Go to GitHub lastfm-typed" />
+			<a href="https://github.com/yayuyokitano/lastfm-typed" target="_blank" rel="noopener">
+				<img src={isDarkTheme() ? GitHubLight : GitHubDark} alt="Go to GitHub lastfm-typed" width="64" height="64" />
 			</a>
 		</div>
 	);
