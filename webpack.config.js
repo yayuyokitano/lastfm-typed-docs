@@ -6,7 +6,7 @@ const zlib = require("zlib")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/main.tsx",
   output: {
     filename: "bundle.js",
