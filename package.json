@@ -46,6 +46,6 @@
   },
   "scripts": {
     "start": "npx webpack serve",
-    "build": "npx webpack --config webpack.config.js"
+    "build": "npx webpack --config webpack_prod.config.js"
   }
 }
