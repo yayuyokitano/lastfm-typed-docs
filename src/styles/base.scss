@@ -25,10 +25,14 @@ button {
 
 button:hover {
 
-	background-color: $reddark;
+	background-color: --reddark;
 
 }
 
 body {
 	margin: 0;
+}
+
+a {
+	color: inherit;
 }

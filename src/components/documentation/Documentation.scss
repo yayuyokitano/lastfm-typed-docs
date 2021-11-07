@@ -185,8 +185,8 @@ details[open] summary ~ * {
 }
 
 .note::before {
-	background-color: $reddark;
-	color: #FFF;
+	background-color: var(--reddark);
+	color: var(--oppositetext);
 	content: "Notice";
 	display: block;
 	font-style: italic;

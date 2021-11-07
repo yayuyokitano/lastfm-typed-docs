@@ -18,10 +18,10 @@ summary {
 nav {
 	padding: 1rem;
 	background-color: var(--bluebg);
-	height: 100vh;
+	height: calc(100vh - 1rem);
 	position: sticky;
 	top: 0;
-	overflow-y: scroll;
+	overflow-y: auto;
 	width: 10em;
 }
 
