@@ -19,26 +19,27 @@ export default function Sidebar() {
 import "./Sidebar.scss";
 
 const sleep = (time:number) => new Promise((resolve) => setTimeout(resolve, time));
+let timeout = setTimeout(() => {}, 0);
 
 async function navClick() {
-	document.querySelector("#nav-button").classList.toggle("is-active");
-	document.querySelector("#nav-button").classList.remove("unclicked");
+
+	const navButton = document.querySelector("#nav-button");
+	navButton.classList.remove("unclicked");
+	navButton.classList.toggle("is-active");
+
+	clearTimeout(timeout);
 
 	const nav = document.querySelector("nav");
-	if (nav.classList.contains("hidden")) {
+	const main = document.querySelector("main");
+	if (navButton.classList.contains("is-active")) {
 		nav.classList.remove("hidden");
 		await sleep(1);
 		nav.classList.add("mobile-visible");
+		timeout = setTimeout(() => main.classList.add("mobile-invisible"), 200);
 	} else {
 		nav.classList.remove("mobile-visible");
-		setTimeout(() => nav.classList.add("hidden"), 200);
-	}
-
-	const main = document.querySelector("main");
-	if (main.classList.contains("mobile-invisible")) {
+		timeout = setTimeout(() => nav.classList.add("hidden"), 200);
 		main.classList.remove("mobile-invisible");
-	} else {
-		setTimeout(() => main.classList.add("mobile-invisible"), 200);
 	}
 
 }
