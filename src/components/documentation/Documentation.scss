@@ -209,3 +209,17 @@ details[open] summary ~ * {
   0%    {opacity: 0; transform: translateY(-10%)}
   100%  {opacity: 1; transform: translateY(0)}
 }
+
+@media screen and (max-width: 750px) {
+
+	main {
+		box-sizing: border-box;
+		margin-left: 0.5em;
+		width: calc(100% - 1em);
+	}
+
+	main.mobile-invisible {
+		display: none;
+	}
+
+}
