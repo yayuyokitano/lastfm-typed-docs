@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import endpoints from "../../helpers/endpoints.json";
 export default function Sidebar() {
@@ -44,10 +44,21 @@ async function navClick() {
 
 }
 
+async function closeNav() {
+	const navButton = document.querySelector("#nav-button");
+	const nav = document.querySelector("nav");
+	const main = document.querySelector("main");
+
+	navButton.classList.remove("is-active");
+	nav.classList.remove("mobile-visible");
+	timeout = setTimeout(() => nav.classList.add("hidden"), 200);
+	main.classList.remove("mobile-invisible");
+}
+
 function SidebarHeader() {
 	return (
 		<div>
-			<Link className="endpoint-link" to="/"><h1 className="sidebar-header">lastfm-typed</h1></Link>
+			<Link className="endpoint-link" to="/" onClick={closeNav}><h1 className="sidebar-header">lastfm-typed</h1></Link>
 			<PrimaryLink target="/" text="Getting Started" />
 			<PrimaryLink target="/logging/" text="Logging" />
 		</div>
@@ -66,7 +77,7 @@ function PrimaryLink(props:PrimaryLinkProps) {
 	return (
 		<div className="category">
 			<hr />
-			<Link className="primary-link" to={target}>{text}</Link>
+			<Link className="primary-link" to={target} onClick={closeNav} >{text}</Link>
 		</div>
 	);
 }
@@ -79,7 +90,7 @@ interface SidebarEndpointProps {
 function SidebarEndpoint(props:SidebarEndpointProps) {
 	const {categoryName, endpointName} = props;
 
-	return <li key={endpointName}><Link className="endpoint-link" to={`/${categoryName}/${endpointName}/`}>.{endpointName}</Link></li>
+	return <li key={endpointName}><Link className="endpoint-link" to={`/${categoryName}/${endpointName}/`} onClick={closeNav} >.{endpointName}</Link></li>
 }
 
 interface SidebarGroupProps {
