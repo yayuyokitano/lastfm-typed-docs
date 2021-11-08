@@ -126,13 +126,12 @@ li:hover {
 		filter: brightness(1.1) !important;
 	}
 
-	.hamburger-inner {
-		transition: background-color 400ms;
+	.hamburger:not(.is-active) .hamburger-inner,
+	.hamburger:not(.is-active) .hamburger-inner::before,
+	.hamburger:not(.is-active) .hamburger-inner::after {
+		background-color: var(--oppositetext);
 	}
 
-	.hamburger-inner,
-	.hamburger-inner::after,
-	.hamburger-inner::before,
 	.hamburger.is-active .hamburger-inner,
 	.hamburger.is-active .hamburger-inner::after,
 	.hamburger.is-active .hamburger-inner::before {
